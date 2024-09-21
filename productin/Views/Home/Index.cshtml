@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Product>
+
+<h2 class="text-center my-4">Product List</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success text-center" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="product-card">
+                <h3 class="product-title">@product.Name</h3>
+                <p class="product-price">₹ @product.Price.ToString("N2")</p>
+                <div class="actions">
+                    <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-secondary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="text-center">
+    <a asp-action="Create" class="btn btn-primary">Add Product</a>
+</div>
